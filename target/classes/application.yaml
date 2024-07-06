@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /identity
+
+
+spring:
+  application:
+    name: sound_final
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/music_final
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+
+outbound:
+  identity:
+    client-id: "7147057967-181mac26t08vucjkmabjvtn7d40kjkt7.apps.googleusercontent.com"
+    client-secret: "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"
+    redirect-uri: "http://localhost:3000/authenticate"
+
+jwt:
+  signerKey: "1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij"
