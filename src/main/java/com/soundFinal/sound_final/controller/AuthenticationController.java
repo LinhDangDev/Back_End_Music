@@ -4,7 +4,7 @@ package com.soundFinal.sound_final.controller;
 import com.nimbusds.jose.JOSEException;
 import com.soundFinal.sound_final.dto.reponse.AuthenticationResponse;
 import com.soundFinal.sound_final.dto.reponse.IntrospectResponse;
-import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.dto.request.AuthenticationRequest;
 import com.soundFinal.sound_final.dto.request.IntrospectRequest;
 import com.soundFinal.sound_final.dto.request.LogoutRequest;

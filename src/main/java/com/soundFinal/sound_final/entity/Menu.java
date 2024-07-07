@@ -1,5 +1,6 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import lombok.Data;
 @Entity
 @Table(name = "Menu")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

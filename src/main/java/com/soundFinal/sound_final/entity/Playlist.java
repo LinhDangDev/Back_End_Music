@@ -1,5 +1,8 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "Playlist")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +34,10 @@ public class Playlist {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
     @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<PlaylistSong> playlistSongs;
 }

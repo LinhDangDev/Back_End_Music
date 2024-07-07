@@ -1,11 +1,14 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Table(name = "Artist_Song")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ArtistSong {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +17,11 @@ public class ArtistSong {
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
+    @JsonBackReference
     private Artist artist;
 
     @ManyToOne
     @JoinColumn(name = "song_id", nullable = false)
+    @JsonBackReference
     private Song song;
 }

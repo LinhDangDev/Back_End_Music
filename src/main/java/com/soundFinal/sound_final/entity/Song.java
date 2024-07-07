@@ -1,5 +1,8 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -44,15 +47,19 @@ public class Song {
     private int downloads = 0;
 
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<PlaylistSong> playlistSongs;
 
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<ArtistSong> artistSongs;
 
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Comment> comments;
 
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
+    @JsonBackReference
     private Genre genre;
 }
