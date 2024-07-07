@@ -1,5 +1,7 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Comment")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +36,11 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "song_id", nullable = false)
+    @JsonBackReference
     private Song song;
 }

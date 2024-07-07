@@ -1,7 +1,7 @@
 package com.soundFinal.sound_final.repository.httpclient;
 
 
-import com.soundFinal.sound_final.dto.request.OutboundUserResponse;
+import com.soundFinal.sound_final.dto.reponse.OutboundUserResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

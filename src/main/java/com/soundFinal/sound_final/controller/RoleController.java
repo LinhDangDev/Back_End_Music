@@ -2,7 +2,7 @@ package com.soundFinal.sound_final.controller;
 
 
 import com.soundFinal.sound_final.dto.reponse.RoleResponse;
-import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.dto.request.RoleRequest;
 import com.soundFinal.sound_final.service.RoleService;
 import lombok.AccessLevel;

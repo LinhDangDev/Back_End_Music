@@ -2,7 +2,7 @@ package com.soundFinal.sound_final.controller;
 
 
 import com.soundFinal.sound_final.dto.reponse.PermissionResponse;
-import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.dto.request.PermissionRequest;
 import com.soundFinal.sound_final.service.PermissionService;
 import lombok.AccessLevel;

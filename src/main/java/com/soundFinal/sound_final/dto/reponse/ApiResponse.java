@@ -1,4 +1,4 @@
-package com.soundFinal.sound_final.dto.request;
+package com.soundFinal.sound_final.dto.reponse;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

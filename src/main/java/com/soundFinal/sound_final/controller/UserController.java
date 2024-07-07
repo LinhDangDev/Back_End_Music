@@ -1,7 +1,7 @@
 package com.soundFinal.sound_final.controller;
 
 import com.soundFinal.sound_final.dto.reponse.UserResponse;
-import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.dto.request.UserCreationRequest;
 import com.soundFinal.sound_final.dto.request.UserUpdateRequest;
 

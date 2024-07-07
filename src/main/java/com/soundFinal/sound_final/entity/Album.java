@@ -1,5 +1,6 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Album")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

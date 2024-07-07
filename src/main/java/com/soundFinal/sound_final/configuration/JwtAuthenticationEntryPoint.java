@@ -2,7 +2,7 @@ package com.soundFinal.sound_final.configuration;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.exception.ErrorCode;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

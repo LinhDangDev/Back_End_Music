@@ -1,7 +1,7 @@
 package com.soundFinal.sound_final.exception;
 
 
-import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
