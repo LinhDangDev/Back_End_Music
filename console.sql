@@ -1,4 +1,4 @@
-
+use webmusic
 -- Bảng User
 INSERT INTO User (id, username, password, email, avatar, create_date, count_sign_in, active, subscription) VALUES
 (1,'user1', '', 'user1@example.com', 'avatar1.jpg', '2023-10-27 10:00:00', 5, true, '2024-10-27 10:00:00'),
