@@ -1,6 +1,7 @@
+
 -- Bảng User
 INSERT INTO User (id, username, password, email, avatar, create_date, count_sign_in, active, subscription) VALUES
-(1,'user1', '12345678', 'user1@example.com', 'avatar1.jpg', '2023-10-27 10:00:00', 5, true, '2024-10-27 10:00:00'),
+(1,'user1', '', 'user1@example.com', 'avatar1.jpg', '2023-10-27 10:00:00', 5, true, '2024-10-27 10:00:00'),
 (2,'user2', '12345678', 'user2@example.com', 'avatar2.jpg', '2023-10-28 12:30:00', 10, true, NULL),
 (3,'user3', '12345678', 'user3@example.com', 'avatar3.jpg', '2023-10-29 15:45:00', 15, false, '2023-11-29 15:45:00'),
 (4,'user4', '12345678', 'user4@example.com', 'avatar4.jpg', '2023-10-30 18:00:00', 20, true, '2024-10-30 18:00:00'),
