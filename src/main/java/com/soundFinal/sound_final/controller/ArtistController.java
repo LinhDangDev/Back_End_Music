@@ -13,7 +13,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.soundFinal.sound_final.dto.ArtistDto;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/artists")
@@ -30,7 +33,20 @@ public class ArtistController {
                 .result(artistService.getAllArtists())
                 .build();
     }
+    @GetMapping("/custom-info")
+    public ApiResponse<List<ArtistDto>> getCustomInformation() {
+        List<ArtistDto> artistDtos = artistService.getAllArtists().stream()
+                .map(artist -> new ArtistDto(
+                        artist.getArtistId(),
+                        artist.getArtistName(),
+                        "http://localhost:8080/img/" + artist.getAvatar()
+                ))
+                .collect(Collectors.toList());
 
+        return ApiResponse.<List<ArtistDto>>builder()
+                .result(artistDtos)
+                .build();
+    }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ApiResponse<Artist> getArtist(@PathVariable Integer id) {
