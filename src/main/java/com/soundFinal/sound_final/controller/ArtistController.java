@@ -2,6 +2,7 @@ package com.soundFinal.sound_final.controller;
 
 import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.entity.Artist;
+import com.soundFinal.sound_final.entity.Song;
 import com.soundFinal.sound_final.service.ArtistService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -45,6 +46,23 @@ public class ArtistController {
 
         return ApiResponse.<List<ArtistDto>>builder()
                 .result(artistDtos)
+                .build();
+    }
+    @GetMapping("/{artistId}/songs")
+    public ApiResponse<List<Song>> getSongsByArtist(@PathVariable Integer artistId) {
+        Artist artist = artistService.getArtistById(artistId);
+        if (artist == null) {
+            return ApiResponse.<List<Song>>builder()
+                    .code(404)
+                    .message("Artist not found")
+                    .build();
+        }
+        List<Song> songs = artist.getArtistSongs().stream()
+                .map(artistSong -> artistSong.getSong())
+                .toList();
+
+        return ApiResponse.<List<Song>>builder()
+                .result(songs)
                 .build();
     }
     @PreAuthorize("hasRole('ADMIN')")
