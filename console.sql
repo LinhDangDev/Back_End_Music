@@ -1,6 +1,6 @@
-use webmusic
+
 -- Bảng User
-INSERT INTO User (id, username, password, email, avatar, create_date, count_sign_in, active, subscription) VALUES
+INSERT INTO User (user_id, username, password, email, avatar, create_date, count_sign_in, active, subscription) VALUES
 (1,'user1', '', 'user1@example.com', 'avatar1.jpg', '2023-10-27 10:00:00', 5, true, '2024-10-27 10:00:00'),
 (2,'user2', '12345678', 'user2@example.com', 'avatar2.jpg', '2023-10-28 12:30:00', 10, true, NULL),
 (3,'user3', '12345678', 'user3@example.com', 'avatar3.jpg', '2023-10-29 15:45:00', 15, false, '2023-11-29 15:45:00'),
@@ -39,16 +39,16 @@ INSERT INTO Permission (name, description) VALUES
 
 -- Bảng User_Roles
 INSERT INTO User_Roles (user_id, role_name) VALUES
-((SELECT id FROM User WHERE username = 'user1'), 'USER'),
-((SELECT id FROM User WHERE username = 'user2'), 'ADMIN'),
-((SELECT id FROM User WHERE username = 'user3'), 'USER'),
-((SELECT id FROM User WHERE username = 'user4'), 'MODERATOR'),
-((SELECT id FROM User WHERE username = 'user5'), 'USER'),
-((SELECT id FROM User WHERE username = 'user6'), 'ADMIN'),
-((SELECT id FROM User WHERE username = 'user7'), 'USER'),
-((SELECT id FROM User WHERE username = 'user8'), 'EDITOR'),
-((SELECT id FROM User WHERE username = 'user9'), 'USER'),
-((SELECT id FROM User WHERE username = 'user10'), 'ADMIN');
+((SELECT user.user_id FROM User WHERE username = 'user1'), 'USER'),
+((SELECT user.user_id FROM User WHERE username = 'user2'), 'ADMIN'),
+((SELECT user.user_id FROM User WHERE username = 'user3'), 'USER'),
+((SELECT user.user_id FROM User WHERE username = 'user4'), 'MODERATOR'),
+((SELECT user.user_id FROM User WHERE username = 'user5'), 'USER'),
+((SELECT user.user_id FROM User WHERE username = 'user6'), 'ADMIN'),
+((SELECT user.user_id FROM User WHERE username = 'user7'), 'USER'),
+((SELECT user.user_id FROM User WHERE username = 'user8'), 'EDITOR'),
+((SELECT user.user_id FROM User WHERE username = 'user9'), 'USER'),
+((SELECT user.user_id FROM User WHERE username = 'user10'), 'ADMIN');
 
 -- Bảng Genre
 INSERT INTO Genre (genre_name, description) VALUES
@@ -91,7 +91,7 @@ INSERT INTO Album (album_name, description, release_date, image, artist_id) VALU
 
 -- Bảng Song
 INSERT INTO Song (song_tittle, release_date, duration, file_path, image, likes, downloads, genre_id) VALUES
-('Blank Space', 2014, '00:03:51', 'blankspace.mp3', 'blankspace.jpg', 1000, 500, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
+('Blank Space', 2014, '00:03:51', 'music/blankspace.mp3', 'blankspace.jpg', 1000, 500, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
 ('Believer', 2017, '00:03:24', 'believer.mp3', 'believer.jpg', 1500, 700, (SELECT genre_id FROM Genre WHERE genre_name = 'Rock')),
 ('Closer', 2016, '00:04:04', 'closer.mp3', 'closer.jpg', 2000, 1000, (SELECT genre_id FROM Genre WHERE genre_name = 'Electronic')),
 ('Shape of You', 2017, '00:03:53', 'shapeofyou.mp3', 'shapeofyou.jpg', 2500, 1200, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
@@ -105,16 +105,16 @@ INSERT INTO Song (song_tittle, release_date, duration, file_path, image, likes, 
 
 -- Bảng Playlist
 INSERT INTO Playlist (playlist_name, create_date, user_id) VALUES
-('Nhạc yêu thích', '2023-10-26 14:00:00', (SELECT id FROM User WHERE username = 'user1')),
-('Nhạc thư giãn', '2023-10-27 16:30:00', (SELECT id FROM User WHERE username = 'user2')),
-('Nhạc năng động', '2023-10-28 18:45:00', (SELECT id FROM User WHERE username = 'user3')),
-('Nhạc buồn', '2023-10-29 20:00:00', (SELECT id FROM User WHERE username = 'user4')),
-('Nhạc vui', '2023-10-30 22:30:00', (SELECT id FROM User WHERE username = 'user5')),
-('Nhạc học tập', '2023-10-31 00:45:00', (SELECT id FROM User WHERE username = 'user6')),
-('Nhạc làm việc', '2023-11-01 02:00:00', (SELECT id FROM User WHERE username = 'user7')),
-('Nhạc tập thể dục', '2023-11-02 04:30:00', (SELECT id FROM User WHERE username = 'user8')),
-('Nhạc du lịch', '2023-11-03 06:45:00', (SELECT id FROM User WHERE username = 'user9')),
-('Nhạc giải stress', '2023-11-04 08:00:00', (SELECT id FROM User WHERE username = 'user10'));
+('Nhạc yêu thích', '2023-10-26 14:00:00', (SELECT playlist_id FROM User WHERE username = 'user1')),
+('Nhạc thư giãn', '2023-10-27 16:30:00', (SELECT playlist_id FROM User WHERE username = 'user2')),
+('Nhạc năng động', '2023-10-28 18:45:00', (SELECT playlist_id FROM User WHERE username = 'user3')),
+('Nhạc buồn', '2023-10-29 20:00:00', (SELECT playlist_id FROM User WHERE username = 'user4')),
+('Nhạc vui', '2023-10-30 22:30:00', (SELECT playlist_id FROM User WHERE username = 'user5')),
+('Nhạc học tập', '2023-10-31 00:45:00', (SELECT playlist_id FROM User WHERE username = 'user6')),
+('Nhạc làm việc', '2023-11-01 02:00:00', (SELECT playlist_id FROM User WHERE username = 'user7')),
+('Nhạc tập thể dục', '2023-11-02 04:30:00', (SELECT playlist_id FROM User WHERE username = 'user8')),
+('Nhạc du lịch', '2023-11-03 06:45:00', (SELECT playlist_id FROM User WHERE username = 'user9')),
+('Nhạc giải stress', '2023-11-04 08:00:00', (SELECT playlist_id FROM User WHERE username = 'user10'));
 
 -- Bảng Playlist_Song
 INSERT INTO Playlist_Song (playlist_id, song_id) VALUES
@@ -131,16 +131,16 @@ INSERT INTO Playlist_Song (playlist_id, song_id) VALUES
 
 -- Bảng Comment
 INSERT INTO Comment (content, create_date, parent_id, rate, user_id, song_id) VALUES
-('Bài hát hay quá!', '2023-10-29 09:00:00', NULL, 5, (SELECT id FROM User WHERE username = 'user1'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Blank Space')),
-('Tôi rất thích bài hát này!', '2023-10-30 11:30:00', NULL, 4, (SELECT id FROM User WHERE username = 'user2'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Believer')),
-('Tuyệt vời!', '2023-10-31 13:45:00', 1, 5, (SELECT id FROM User WHERE username = 'user3'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Blank Space')),
-('Bài hát này thật ý nghĩa!', '2023-11-01 15:00:00', NULL, 3, (SELECT id FROM User WHERE username = 'user4'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Shape of You')),
-('Giai điệu thật bắt tai!', '2023-11-02 17:30:00', NULL, 5, (SELECT id FROM User WHERE username = 'user5'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Hello')),
-('Tôi đã nghe đi nghe lại nhiều lần!', '2023-11-03 19:45:00', NULL, 4, (SELECT id FROM User WHERE username = 'user6'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Girls Like You')),
-('Âm thanh tuyệt vời!', '2023-11-04 21:00:00', 7, 5, (SELECT id FROM User WHERE username = 'user7'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Something Just Like This')),
-('Ca sĩ hát rất hay!', '2023-11-05 23:30:00', NULL, 4, (SELECT id FROM User WHERE username = 'user8'), (SELECT song.song_id FROM Song WHERE song_tittle = 'No Tears Left to Cry')),
-('Lời bài hát sâu sắc!', '2023-11-06 01:45:00', NULL, 3, (SELECT id FROM User WHERE username = 'user9'), (SELECT song.song_id FROM Song WHERE song_tittle = 'God s Plan')),
-('Một bài hát kinh điển!', '2023-11-07 03:00:00', NULL, 5, (SELECT id FROM User WHERE username = 'user10'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Love Yourself'));
+('Bài hát hay quá!', '2023-10-29 09:00:00', NULL, 5, (SELECT comment_id FROM User WHERE username = 'user1'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Blank Space')),
+('Tôi rất thích bài hát này!', '2023-10-30 11:30:00', NULL, 4, (SELECT comment_id FROM User WHERE username = 'user2'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Believer')),
+('Tuyệt vời!', '2023-10-31 13:45:00', 1, 5, (SELECT comment_id FROM User WHERE username = 'user3'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Blank Space')),
+('Bài hát này thật ý nghĩa!', '2023-11-01 15:00:00', NULL, 3, (SELECT comment_id FROM User WHERE username = 'user4'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Shape of You')),
+('Giai điệu thật bắt tai!', '2023-11-02 17:30:00', NULL, 5, (SELECT comment_id FROM User WHERE username = 'user5'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Hello')),
+('Tôi đã nghe đi nghe lại nhiều lần!', '2023-11-03 19:45:00', NULL, 4, (SELECT comment_id FROM User WHERE username = 'user6'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Girls Like You')),
+('Âm thanh tuyệt vời!', '2023-11-04 21:00:00', 7, 5, (SELECT comment_id FROM User WHERE username = 'user7'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Something Just Like This')),
+('Ca sĩ hát rất hay!', '2023-11-05 23:30:00', NULL, 4, (SELECT comment_id FROM User WHERE username = 'user8'), (SELECT song.song_id FROM Song WHERE song_tittle = 'No Tears Left to Cry')),
+('Lời bài hát sâu sắc!', '2023-11-06 01:45:00', NULL, 3, (SELECT comment_id FROM User WHERE username = 'user9'), (SELECT song.song_id FROM Song WHERE song_tittle = 'God s Plan')),
+('Một bài hát kinh điển!', '2023-11-07 03:00:00', NULL, 5, (SELECT comment_id FROM User WHERE username = 'user10'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Love Yourself'));
 
 
 -- Bảng Artist_Song
