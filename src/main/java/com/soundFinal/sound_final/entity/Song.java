@@ -5,9 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -20,15 +23,31 @@ public class Song {
     @Column(name = "song_id")
     private int songId;
 
+    @NotNull(message = "Song title can not be null")
+    @Size(max = 255, message = "Song title must not be over 255 characters")
+    @Column(name = "song_tittle")
     private String songTitle;
 
+    @Column(name = "release_date")
+    private Integer releaseDate;
+
+    @Column(name = "duration")
+    private LocalTime duration;
+
+    @NotNull(message = "Song file path can not be null")
+    @Size(max = 255, message = "Song file path must not be over 255 characters")
+    @Column(name = "file_path")
     private String filePath;
 
+    @Size(max = 255, message = "Song image must not be over 255 characters")
+    @Column(name = "image")
     private String coverImage;
 
-    private int likes;
+    @Column(name = "likes")
+    private int likes = 0;
 
-    private int downloads;
+    @Column(name = "downloads")
+    private int downloads = 0;
 
     private double size;
 
