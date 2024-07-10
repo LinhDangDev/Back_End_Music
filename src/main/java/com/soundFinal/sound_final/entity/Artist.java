@@ -39,6 +39,6 @@ public class Artist {
     private List<Album> albums;
 
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     private List<ArtistSong> artistSongs;
 }

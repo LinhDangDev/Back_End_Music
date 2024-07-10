@@ -28,13 +28,10 @@ public class SongController {
     private SongService songService;
 
     @GetMapping
-//    public ApiResponse<List<Song>> getAll(){
-//        return ApiResponse.<List<Song>>builder()
-//                .result(songService.getAllSongs())
-//                .build();
-//    }
-    public ResponseEntity<List<Song>> getAll(){
-        return new ResponseEntity<>(songService.getAllSongs(), HttpStatus.OK);
+    public ApiResponse<List<Song>> getAll(){
+        return ApiResponse.<List<Song>>builder()
+                .result(songService.getAllSongs())
+                .build();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
