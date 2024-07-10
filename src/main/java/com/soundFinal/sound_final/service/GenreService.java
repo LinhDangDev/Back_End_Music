@@ -10,10 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,30 +19,25 @@ import java.util.Optional;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class GenreService {
 
+
     GenreRepository genreRepository;
-    GenerMapper genreMapper;
+    GenerMapper generMapper;
 
-    @Transactional
-    public GenreResponse createGenre(GenerRequest request) {
-        Genre genre = genreMapper.toGenre(request);
+
+    public GenreResponse create (GenerRequest request) {
+        Genre genre = generMapper.toGenre(request);
         genre = genreRepository.save(genre);
-        return genreMapper.toGenreResponse(genre);
+        return generMapper.toGenreResponse(genre);
+
     }
 
-    @Transactional(readOnly = true)
-    public List<GenreResponse> getAllGenres() {
-        List<Genre> genres = genreRepository.findAll();
-        return genres.stream().map(genreMapper::toGenreResponse).toList();
+    public List<GenreResponse> getAll(){
+        var genres = genreRepository.findAll();
+        return genres.stream().map(generMapper::toGenreResponse).toList();
     }
 
-    @Transactional(readOnly = true)
-    public GenreResponse getGenreById(Long id) {
-        Optional<Genre> genreOptional = genreRepository.findById(id);
-        return genreOptional.map(genreMapper::toGenreResponse).orElse(null);
+    public void delete(String genre){
+        genreRepository.deleteById(genre);
     }
 
-    @Transactional
-    public void deleteGenre(Long id) {
-        genreRepository.deleteById(id);
-    }
 }

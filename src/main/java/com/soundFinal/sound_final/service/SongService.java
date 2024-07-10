@@ -57,7 +57,7 @@ public class SongService {
             song.setArtistSongs(new ArrayList<>());
             song.setComments(new ArrayList<>());
 
-            Optional<Genre> genreOptional = genreRepository.findById(Long.valueOf(genreId));
+            Optional<Genre> genreOptional = genreRepository.findById(String.valueOf(genreId));
             if (genreOptional.isPresent()) {
                 song.setGenre(genreOptional.get());
             }
