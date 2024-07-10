@@ -1,5 +1,6 @@
 -- Bảng User
 INSERT INTO user (user_id, username, password, email, avatar, create_date, count_sign_in, active, subscription) VALUES
+
                                                                                                                     (1,'user1', '', 'user1@example.com', 'avatar1.jpg', '2023-10-27 10:00:00', 0, true, '2024-10-27 10:00:00'),
                                                                                                                     (2,'user2', '12345678', 'user2@example.com', 'avatar2.jpg', '2023-10-28 12:30:00', 0, true, NULL),
                                                                                                                     (3,'user3', '12345678', 'user3@example.com', 'avatar3.jpg', '2023-10-29 15:45:00', 0, false, '2023-11-29 15:45:00'),
@@ -256,7 +257,9 @@ INSERT INTO song (song_tittle, release_date, duration, file_path, image, likes, 
 ('Baby', 2010, '00:03:34', 'baby.mp3', 'baby.jpg', 4900, 2450, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
 ('Never Say Never', 2010, '00:03:50', 'neversaynever.mp3', 'neversaynever.jpg', 4800, 2400, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
 ('U Smile', 2010, '00:03:17', 'usmile.mp3', 'usmile.jpg', 4700, 2350, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
+
 ('One Time', 2009, '00:03:08', 'onetime.mp3', 'onetime.jpg', 4600, 2300, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
+
 ('The A Team', 2010, '00:04:18', 'theateam.mp3', 'TheATeam.jpg', 1000, 500, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
 ('Yummy', 2017, '00:03:23', 'yummy.mp3', 'Yummy.png', 1500, 700, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
 ('Peaches', 2016, '00:03:18', 'peaches.mp3', 'Peaches.png', 2000, 1000, (SELECT genre_id FROM Genre WHERE genre_name = 'Pop')),
@@ -271,6 +274,7 @@ INSERT INTO song (song_tittle, release_date, duration, file_path, image, likes, 
 
 
 -- Thêm dữ liệu vào bảng Artist_Song
+
 INSERT INTO artist_song (artist_id, song_id) VALUES
                                                  ((SELECT artist_id FROM Artist WHERE artist_name = 'Taylor Swift'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Style')),
                                                  ((SELECT artist_id FROM Artist WHERE artist_name = 'Taylor Swift'), (SELECT song.song_id FROM Song WHERE song_tittle = 'Bad Blood')),
