@@ -34,6 +34,20 @@ public class SongController {
                 .result(songService.getAllSongs())
                 .build();
     }
+    @PostMapping("/like/{id}")
+    public ApiResponse<String> like(@PathVariable Integer id){
+        songService.addLike(id);
+        return ApiResponse.<String>builder()
+                .result("Update like success")
+                .build();
+    }
+    @PostMapping("/subLike/{id}")
+    public ApiResponse<String> subLike(@PathVariable Integer id){
+        songService.subLike(id);
+        return ApiResponse.<String>builder()
+                .result("Update like success")
+                .build();
+    }
     @GetMapping("/{id}/play")
     public ApiResponse<SongDto> getSongForPlay(@PathVariable Integer id) {
         Song song = songService.getSongById(id);
