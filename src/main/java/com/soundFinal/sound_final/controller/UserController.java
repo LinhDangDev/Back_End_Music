@@ -2,6 +2,7 @@ package com.soundFinal.sound_final.controller;
 
 import com.soundFinal.sound_final.dto.reponse.UserResponse;
 import com.soundFinal.sound_final.dto.request.ApiResponse;
+import com.soundFinal.sound_final.dto.request.PasswordCreationRequest;
 import com.soundFinal.sound_final.dto.request.UserCreationRequest;
 import com.soundFinal.sound_final.dto.request.UserUpdateRequest;
 
@@ -24,6 +25,9 @@ import java.util.List;
 @Slf4j
 public class UserController {
     UserService userService;
+
+
+
 
     @PostMapping
     ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request){
@@ -50,6 +54,18 @@ public class UserController {
                 .result(userService.getUser(userId))
                 .build();
     }
+
+    @PostMapping("/create-password")
+
+    ApiResponse<Void> createPassword(@RequestBody @Valid PasswordCreationRequest request){
+        userService.createPassword(request);
+        return ApiResponse.<Void>builder()
+                .message("Password has been created, you could use it to log-in")
+                .build();
+
+
+    }
+
 
     @GetMapping("/myInfo")
     ApiResponse<UserResponse> getMyInfo(){

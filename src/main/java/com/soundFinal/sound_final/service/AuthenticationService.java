@@ -35,8 +35,10 @@ import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+
 
 @Service
 @RequiredArgsConstructor
@@ -99,14 +101,16 @@ public class AuthenticationService {
         var user = userRepository.findByEmailIgnoreCase(userInfo.getEmail()).orElseGet(
                 () -> userRepository.save(User.builder()
                         .email(userInfo.getEmail())
-                        .username(userInfo.getGivenName())
+                        .username(userInfo.getName())
 //                        .lastName(userInfo.getFamilyName())
                         .roles(roles)
                         .build()));
 
+//         Generate token
+        var token = generateToken(user);
 
         return AuthenticationResponse.builder()
-                .token(response.getAccessToken())
+                .token(token)
                 .build();
     }
 

@@ -29,8 +29,12 @@ public class SecurityConfig {
 
     // cho phep truy cap
     private final String[] PUBLIC_ENDPOINTS = {"/users",
-            "/auth/token", "/auth/introspect", "/auth/logout", "/auth/outbound/authentication"
+            "/auth/token", "/auth/introspect", "/auth/logout", "/auth/outbound/authentication",
+            "/forgotPassword/**",
+
     };
+
+
 
     @Autowired
     private CustomJwtDecoder customJwtDecoder;
@@ -39,6 +43,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+
 //                        .requestMatchers(HttpMethod.GET, "/users") // ham nay get chi dc admin cho truy cap
 //                        .hasRole(Role.ADMIN.name())// cho phep admin truy cap ham users
                         .anyRequest().authenticated());
