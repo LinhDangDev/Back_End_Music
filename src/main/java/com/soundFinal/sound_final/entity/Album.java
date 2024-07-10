@@ -1,5 +1,6 @@
 package com.soundFinal.sound_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -39,5 +40,6 @@ public class Album {
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
+    @JsonBackReference
     private Artist artist;
 }

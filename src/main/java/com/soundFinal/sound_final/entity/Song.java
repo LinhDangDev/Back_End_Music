@@ -18,7 +18,7 @@ import java.util.List;
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "songId")
+    @Column(name = "song_id")
     private int songId;
 
     @NotNull(message = "Song title can not be null")

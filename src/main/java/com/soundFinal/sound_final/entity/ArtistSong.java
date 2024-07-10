@@ -2,6 +2,7 @@ package com.soundFinal.sound_final.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,11 +18,12 @@ public class ArtistSong {
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
-    @JsonBackReference
-    private Artist artist; // <-- Loại bỏ @JsonBackReference
+    @JsonManagedReference
+    private Artist artist;
 
     @ManyToOne
     @JoinColumn(name = "song_id", nullable = false)
     @JsonBackReference
-    private Song song; // <-- Loại bỏ @JsonBackReference
+    private Song song;
+
 }

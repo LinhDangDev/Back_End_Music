@@ -43,6 +43,8 @@ public class SecurityConfig {
                         .requestMatchers("/music/**").permitAll()
 //                        .requestMatchers(HttpMethod.GET, "/users") // ham nay get chi dc admin cho truy cap
 //                        .hasRole(Role.ADMIN.name())// cho phep admin truy cap ham users
+                        .requestMatchers("/img/**").permitAll()
+                        .requestMatchers("/music/**").permitAll()
                         .anyRequest().authenticated());
 
         // xac thuc token de truy cap
