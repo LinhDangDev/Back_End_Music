@@ -20,4 +20,16 @@ public class SongService {
     public void addOrUpdateSong(Song song){ songRepository.save(song); }
 
     public void deleteSongById(Integer id){ songRepository.deleteById(id); }
+    public void addLike(Integer id){
+        Song song = this.getSongById(id);
+        if(song != null)
+            song.setLikes(song.getLikes() + 1);
+        this.addOrUpdateSong(song);
+    }
+    public void subLike(Integer id){
+        Song song = this.getSongById(id);
+        if(song != null)
+            song.setLikes(song.getLikes() - 1);
+        this.addOrUpdateSong(song);
+    }
 }
