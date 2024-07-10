@@ -2,6 +2,7 @@ package com.soundFinal.sound_final.controller;
 
 import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.entity.Artist;
+import com.soundFinal.sound_final.entity.Song;
 import com.soundFinal.sound_final.service.ArtistService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -13,7 +14,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.soundFinal.sound_final.dto.ArtistDto;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/artists")
@@ -30,7 +34,37 @@ public class ArtistController {
                 .result(artistService.getAllArtists())
                 .build();
     }
+    @GetMapping("/custom-info")
+    public ApiResponse<List<ArtistDto>> getCustomInformation() {
+        List<ArtistDto> artistDtos = artistService.getAllArtists().stream()
+                .map(artist -> new ArtistDto(
+                        artist.getArtistId(),
+                        artist.getArtistName(),
+                        "http://localhost:8080/img/" + artist.getAvatar()
+                ))
+                .collect(Collectors.toList());
 
+        return ApiResponse.<List<ArtistDto>>builder()
+                .result(artistDtos)
+                .build();
+    }
+    @GetMapping("/{artistId}/songs")
+    public ApiResponse<List<Song>> getSongsByArtist(@PathVariable Integer artistId) {
+        Artist artist = artistService.getArtistById(artistId);
+        if (artist == null) {
+            return ApiResponse.<List<Song>>builder()
+                    .code(404)
+                    .message("Artist not found")
+                    .build();
+        }
+        List<Song> songs = artist.getArtistSongs().stream()
+                .map(artistSong -> artistSong.getSong())
+                .toList();
+
+        return ApiResponse.<List<Song>>builder()
+                .result(songs)
+                .build();
+    }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ApiResponse<Artist> getArtist(@PathVariable Integer id) {

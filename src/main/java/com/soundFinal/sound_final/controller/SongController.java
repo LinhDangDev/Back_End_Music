@@ -1,5 +1,6 @@
 package com.soundFinal.sound_final.controller;
 
+import com.soundFinal.sound_final.dto.SongDto;
 import com.soundFinal.sound_final.dto.reponse.ApiResponse;
 import com.soundFinal.sound_final.entity.Song;
 import com.soundFinal.sound_final.service.SongService;
@@ -33,7 +34,32 @@ public class SongController {
                 .result(songService.getAllSongs())
                 .build();
     }
+    @GetMapping("/{id}/play")
+    public ApiResponse<SongDto> getSongForPlay(@PathVariable Integer id) {
+        Song song = songService.getSongById(id);
 
+        if (song == null) {
+            return ApiResponse.<SongDto>builder()
+                    .code(404)
+                    .message("Song not found")
+                    .build();
+        }
+
+        // Lấy thông tin ca sĩ từ ArtistSong
+        String artistName = song.getArtistSongs().get(0).getArtist().getArtistName();
+
+        SongDto songDto = new SongDto(
+                song.getSongId(),
+                song.getSongTitle(),
+                artistName,
+                "http://localhost:8080/img/" + song.getCoverImage(),
+                "http://localhost:8080/music/" + song.getFilePath()
+        );
+
+        return ApiResponse.<SongDto>builder()
+                .result(songDto)
+                .build();
+    }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ApiResponse<Song> getSong(@PathVariable Integer id){

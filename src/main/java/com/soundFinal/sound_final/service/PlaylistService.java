@@ -20,4 +20,5 @@ public class PlaylistService {
     public void addOrUpdatePlaylist(Playlist playlist){ playlistRepository.save(playlist); }
 
     public void deletePlaylistById(Integer id){ playlistRepository.deleteById(id); }
+
 }

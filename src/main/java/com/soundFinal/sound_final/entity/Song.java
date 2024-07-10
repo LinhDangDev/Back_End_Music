@@ -1,6 +1,7 @@
 package com.soundFinal.sound_final.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -52,6 +53,7 @@ public class Song {
 
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
     @JsonManagedReference
+//    @JsonIgnore
     private List<ArtistSong> artistSongs;
 
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
