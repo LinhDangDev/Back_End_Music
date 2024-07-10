@@ -49,9 +49,9 @@ public class Song {
     @Column(name = "downloads")
     private int downloads = 0;
 
-    private double size;
-
-    private LocalDate date;
+//    private double size;
+//
+//    private LocalDate date;
 
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
     @JsonManagedReference

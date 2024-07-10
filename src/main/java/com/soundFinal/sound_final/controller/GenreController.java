@@ -103,19 +103,19 @@ public class GenreController {
         return ApiResponse.<Void>builder().build();
     }
 
-    @GetMapping("genre/{id}")
-    public ApiResponse<GenreResponse> getById(@PathVariable Integer id) {
-        GenreResponse genreResponse = genreService._getGenreById(id);
-        if (genreResponse != null) {
-            return ApiResponse.<GenreResponse>builder()
-                    .result(genreResponse)
-                    .build();
-        } else {
-            //////////////////////////////////////////////////// Thach dang fix
-            return ApiResponse.<GenreResponse>builder()
-                    .result(genreResponse)
-                    .build();
-        }
-    }
+//    @GetMapping("genre/{id}")
+//    public ApiResponse<GenreResponse> getById(@PathVariable Integer id) {
+//        GenreResponse genreResponse = genreService._getGenreById(id);
+//        if (genreResponse != null) {
+//            return ApiResponse.<GenreResponse>builder()
+//                    .result(genreResponse)
+//                    .build();
+//        } else {
+//            //////////////////////////////////////////////////// Thach dang fix
+//            return ApiResponse.<GenreResponse>builder()
+//                    .result(genreResponse)
+//                    .build();
+//        }
+//    }
 
 }

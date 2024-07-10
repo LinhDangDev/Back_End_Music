@@ -27,6 +27,8 @@ public class SongService {
 
     @Autowired
     private GenreRepository genreRepository;
+    @Autowired
+    private GenreService genreService;
 
     public List<Song> getAllSongs(){ return songRepository.findAll(); }
 
@@ -68,19 +70,28 @@ public class SongService {
             Song song = new Song();
             song.setSongTitle(file.getOriginalFilename().replaceFirst("[.][^.]+$", ""));
             double size = round(((double) file.getSize() / 1024f) / 1024f); // In MB
-            song.setSize(size);
-            song.setDate(LocalDate.now());
+//            song.setSize(size);
+//            song.setDate(LocalDate.now());
             song.setCoverImage(null); // Setting cover image to null as it's not provided
             song.setLikes(0);
             song.setDownloads(0);
-            song.setPlaylistSongs(new ArrayList<>());
-            song.setArtistSongs(new ArrayList<>());
-            song.setComments(new ArrayList<>());
+//            song.setPlaylistSongs(new ArrayList<>());
+//            song.setArtistSongs(new ArrayList<>());
+//            song.setComments(new ArrayList<>());\
 
-            Optional<Genre> genreOptional = genreRepository.findById(Integer.valueOf(genreId));
-            if (genreOptional.isPresent()) {
-                song.setGenre(genreOptional.get());
+            List<Song> songs  =  new ArrayList<>();
+            songs.add(song);
+
+
+            Genre genre = genreService.getGenreById(genreId);
+            if (genre != null) {
+                song.setGenre(genre);
+              List <Song> songs1 = genre.getSongs();
+              songs1.add(song);
+                genre.setSongs(songs1);
+                // Maintain bidirectional relationship
             }
+
 
             // Save the Song entity to get the generated ID
             song = songRepository.save(song);
