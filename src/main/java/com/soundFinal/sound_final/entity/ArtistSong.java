@@ -17,9 +17,11 @@ public class ArtistSong {
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
+    @JsonBackReference
     private Artist artist; // <-- Loại bỏ @JsonBackReference
 
     @ManyToOne
     @JoinColumn(name = "song_id", nullable = false)
+    @JsonBackReference
     private Song song; // <-- Loại bỏ @JsonBackReference
 }
