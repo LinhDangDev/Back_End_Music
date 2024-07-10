@@ -1,6 +1,7 @@
 package com.soundFinal.sound_final.dto.request;
 
 import com.soundFinal.sound_final.dto.reponse.PermissionResponse;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
@@ -10,13 +11,14 @@ import lombok.experimental.FieldDefaults;
 import java.util.Set;
 
 @Data
-@FieldDefaults(level = AccessLevel.PACKAGE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserCreationRequest {
     @Size(min = 3, message = "USERNAME_INVALID")
     String username;
     @Size(min = 8, message = "INVALID_PASSWORD")
     String password;
-    @Email
+    @Email(message = "INVALID_EMAIL")
     String email;
+
     Set<PermissionResponse> permissions;
 }

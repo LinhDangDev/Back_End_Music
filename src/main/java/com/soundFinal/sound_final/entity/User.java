@@ -3,11 +3,10 @@ package com.soundFinal.sound_final.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -29,17 +28,17 @@ public class User {
     @Column(name = "user_id")
     String id;
 
-    @NotNull(message = "User username can not be null")
+    @NotBlank(message = "User username can not be null")
     @Size(max = 255, message = "User username must not be over 255 characters")
     @Column(unique = true, name = "username",nullable = false)
     String username;
 
-    @NotNull(message = "User password can not be null")
+    @NotBlank(message = "User password can not be null")
     @Size(max = 255, message = "User password must not be over 255 characters")
     @Column(name = "password")
     String password;
 
-    @NotNull(message = "User email can not be null")
+    @NotBlank(message = "User email can not be null")
     @Email(message = "User email is invalid")
     @Size(max = 255, message = "User email must not be over 255 characters")
     @Column(unique = true, name = "email")
@@ -49,8 +48,11 @@ public class User {
     @Column(name = "avatar")
     String avatar;
 
+    @OneToOne(mappedBy = "user")
+    ForgotPassword forgotPassword;
+
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createDate;
 
     @Column(name = "count_sign_in")
@@ -68,7 +70,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "User_Roles",
             joinColumns = @JoinColumn(name = "user_id"),

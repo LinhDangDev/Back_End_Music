@@ -28,7 +28,7 @@ public class Genre {
     @Size(max = 255, message = "Genre description must not be over 255 characters")
     @Column(name = "description")
     private String description;
-
+//
     @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Song> songs;

@@ -29,8 +29,12 @@ public class SecurityConfig {
 
     // cho phep truy cap
     private final String[] PUBLIC_ENDPOINTS = {"/users",
-            "/auth/token", "/auth/introspect", "/auth/logout", "/auth/outbound/authentication", "/src/main/static/**"
+            "/auth/token", "/auth/introspect", "/auth/logout", "/auth/outbound/authentication",
+            "/forgotPassword/**"
+
     };
+
+
 
     @Autowired
     private CustomJwtDecoder customJwtDecoder;

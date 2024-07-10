@@ -1,6 +1,5 @@
 package com.soundFinal.sound_final.dto.reponse;
 
-import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,6 +14,6 @@ public class UserResponse {
     String id;
     String username;
     String email;
-
+    Boolean noPassword;
     Set<RoleResponse> roles;
 }

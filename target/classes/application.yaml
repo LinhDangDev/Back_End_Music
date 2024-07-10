@@ -2,9 +2,9 @@ server:
   port: 8080
 
 
+
 spring:
-  application:
-    name: sound_final
+
 
   datasource:
     url: jdbc:mysql://localhost:3306/webmusic
@@ -19,6 +19,25 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
     show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    username: vuongthach03@gmail.com
+    password: poikbvfphfhohcja
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+
+  application:
+    name: sound_final
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
 
 outbound:
   identity:
